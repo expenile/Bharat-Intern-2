@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(to right, #87ceeb, #ffd700);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+
+      h1 {
+        color: #269ae8;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        width: 70%;
+        max-width: 800px;
+      }
+
+      li {
+        background-color: #fff;
+        border: 2px solid #dadada;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        color: #206db9;
+      }
+
+      p {
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      button {
+        background-color: #e74c3c;
+        color: #fff;
+        padding: 5px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+        margin-right: 10px;
+      }
+
+      button:hover {
+        background-color: #c0392b;
+      }
+
+      form {
+        display: inline;
+      }
+
+      a.create-btn {
+        background-color: #2ecc71;
+        color: #fff;
+        padding: 10px;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        display: inline-block;
+        margin-top: 20px;
+        font-weight: bold;
+      }
+
+      a.create-btn:hover {
+        background-color: #27ae60;
+      }
+    </style>
+    <title>Blog</title>
+  </head>
+  <body>
+    <h1>Blog Website</h1>
+    <ul>
+      <% posts.forEach(post => { %>
+      <li>
+        <h2><%= post.title %></h2>
+        <p><%= post.content %></p>
+        <form action="/update/<%= post._id %>" method="GET">
+          <button type="submit">Update</button>
+        </form>
+        <form
+          action="/delete/<%= post._id %>"
+          method="POST"
+          style="display: inline"
+        >
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+      <% }); %>
+    </ul>
+    <a href="/create" class="create-btn">Create New Post</a>
+  </body>
+</html>
